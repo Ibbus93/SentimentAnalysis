@@ -1,5 +1,3 @@
-from pyspark import SparkContext, SparkConf
-
 def deleteNotAvailable(tweets):
     av = []
     for tweet in tweets:
@@ -8,7 +6,11 @@ def deleteNotAvailable(tweets):
     return av
 
 def loadTsv(file, sc):
-    return sc.textFile(file)\
-    .map(lambda x : x.encode("ascii", "ignore"))\
-    .map(lambda line : line.split("\t"))\
-    .collect()
+    return sc.parallelize(
+        deleteNotAvailable(
+            sc.textFile(file)\
+            .map(lambda x : x.encode("ascii", "ignore"))\
+            .map(lambda line : line.split("\t"))\
+            .collect()
+        )
+    )
