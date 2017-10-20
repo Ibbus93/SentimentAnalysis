@@ -12,13 +12,10 @@ spark = SparkSession(sc)
 # t2015train = loadTsv("/home/fede/PycharmProjects/SentimentAnalysis/tweets_subtask_BD/twitter-2015train-BD-down.tsv")
 
 # Carico i file per la challenge B che servono al machine learning scremandoli di quelli non disponibili
-t2015test = utilities.loadTsv("tweets_subtask_BD/twitter-2015test-BD-down.tsv", sc)
 t2015train = utilities.loadTsv("tweets_subtask_BD/twitter-2015train-BD-down.tsv", sc)
-t2016dev = utilities.loadTsv("tweets_subtask_BD/twitter-2016dev-BD-down.tsv", sc)
-t2016devtest = utilities.loadTsv("tweets_subtask_BD/twitter-2016devtest-BD-down.tsv", sc)
-t2016test = utilities.loadTsv("tweets_subtask_BD/twitter-2016test-BD-down.tsv", sc)
-t2016train = utilities.loadTsv("tweets_subtask_BD/twitter-2016train-BD-down.tsv", sc)
 
-print t2015test.take(5)
+# Creo i data frame dal file di training
+train_df = t2015train.toDF(['tweet_id', 'topic', 'classification', 'tweet_text'])
+train_df.printSchema()
 
 # https://twitter.com/statuses/
