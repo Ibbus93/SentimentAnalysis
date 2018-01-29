@@ -1,7 +1,8 @@
 # Progetto di ARE2 - Sentiment Analysis
 
 ## Comanda del progetto
-###Subtasks B-C: Topic-Based Message Polarity Classification:  
+
+<h3>Subtasks B-C: Topic-Based Message Polarity Classification:  </h3>
 Given a message and a topic, classify the message on  
 * **B) two-point scale:** positive or negative sentiment towards that topic
 * **C) five-point scale:** sentiment conveyed by that tweet towards the topic on a five-point scale.
@@ -63,7 +64,7 @@ Ogni file presente nella cartella è così composto:
  * Creazione modello di Logistic Regression
  * Predizione
  
-  ## Approccio alla risoluzione del task C
+ ## Approccio alla risoluzione del task C
  * Elaborazione dei dati tramite i Data Frame
  * Split dei tweet in parole utilizzando Tokenizer
  * Utilizzo HashingTF
