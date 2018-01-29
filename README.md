@@ -3,7 +3,8 @@
 ## Comanda del progetto
 
 <h3>Subtasks B-C: Topic-Based Message Polarity Classification:  </h3>
-Given a message and a topic, classify the message on  
+Given a message and a topic, classify the message on   
+
   * **B) two-point scale:** positive or negative sentiment towards that topic
   * **C) five-point scale:** sentiment conveyed by that tweet towards the topic on a five-point scale.
 
