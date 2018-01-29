@@ -4,8 +4,8 @@
 
 <h3>Subtasks B-C: Topic-Based Message Polarity Classification:  </h3>
 Given a message and a topic, classify the message on  
-* **B) two-point scale:** positive or negative sentiment towards that topic
-* **C) five-point scale:** sentiment conveyed by that tweet towards the topic on a five-point scale.
+  * **B) two-point scale:** positive or negative sentiment towards that topic
+  * **C) five-point scale:** sentiment conveyed by that tweet towards the topic on a five-point scale.
 
 ## Struttura del progetto
 Il progetto ha la seguente struttura:
@@ -57,16 +57,9 @@ Ogni file presente nella cartella è così composto:
 
   </table>
  
- ## Approccio alla risoluzione del task B
- * Elaborazione dei dati tramite i Data Frame
- * Split dei tweet in parole utilizzando Tokenizer
- * Utilizzo HashingTF
- * Creazione modello di Logistic Regression
- * Predizione
- 
- ## Approccio alla risoluzione del task C
- * Elaborazione dei dati tramite i Data Frame
- * Split dei tweet in parole utilizzando Tokenizer
- * Utilizzo HashingTF
+ ## Approccio alla risoluzione dei task
+ * Preprocessing dei dati
+ * Aggiunta di feature semantiche scaricate tramite Watson IBM (categorie, concetti) e inclusione di queste nei tweet
+ * Utilizzo di TF-IDF
  * Creazione modello di Logistic Regression
  * Predizione
