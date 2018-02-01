@@ -44,7 +44,7 @@ df_train = df_train[df_train['topic'].isin(ttk)]
 
 
 # Test
-print("Caricamento Train...")
+print("Caricamento Test...")
 df_test = pd.read_csv("test_CE.tsv", sep='\t', encoding='utf-8',  names=['tweet_id', 'topic', 'class', 'tweet_text', 'categories', 'concepts'])
 df_test['categories'] = df_test['categories'].fillna('').map(lambda s : re.sub('^ ', '', s.lower().replace('/', ' ').replace(';', '').replace(',',''))).map(utilities.clean_tweet)
 df_test['concepts'] = df_test['concepts'].fillna('').map(lambda s : s.lower().replace(';', ' ')).map(utilities.clean_tweet)    
@@ -74,8 +74,11 @@ sw_filter3 = StopWordsRemover().setStopWords(stop_words).setCaseSensitive(False)
 cve3 = CountVectorizer(minTF=1., minDF=5., vocabSize=2**17).setInputCol("filtered_con").setOutputCol("tf_con")
 idf3 = IDF().setInputCol('tf_con').setOutputCol('tfidf_con')
 
+vecAss = VectorAssembler(inputCols=['tfidf_cat', 'tfidf_con'], outputCol='features')
+
 pipe_feat2 = Pipeline(stages=[tokenizer2, sw_filter2, cve2, idf2])
 pipe_feat3 = Pipeline(stages=[tokenizer3, sw_filter3, cve3, idf3])
+final_pipe = Pipeline(stages=[pipe_feat2, pipe_feat3, vecAss])
 
 # 3. Esecuzione Task B
 # a. Categorie
@@ -93,3 +96,13 @@ mae_m, mae_ni = utilities.task_C(df_train, df_test, sc, sqlContext, pipe_feat3, 
 print 'Concetti: '
 print '  MAE m: %f' % (mae_m)
 print '  MAE ni: %f' % (mae_ni)
+
+# c. Categorie e  Concetti
+print("Esecuzione Task C con categorie e concetti...")
+mae_m, mae_ni = utilities.task_C(df_train, df_test, sc, sqlContext, final_pipe, 'features')
+
+print 'Categorie e Concetti: '
+print '  MAE m: %f' % (mae_m)
+print '  MAE ni: %f' % (mae_ni)
+
+

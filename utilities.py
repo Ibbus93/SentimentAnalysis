@@ -188,8 +188,8 @@ def task_B(df_train, df_test, sqlContext, pipe, features_col):
         i = i + 1
 
         if i % 50 == 0:
-            print("Topic processati:", i)              
-        
+            print("Topic processati:", i)  
+
     return (np.mean(accuracy), np.mean(f1_score), np.mean(avg_rec))
 
 def mae_ms(scores):
@@ -248,6 +248,8 @@ def task_C(df_train, df_test, sc, sqlContext, pipe, features_col):
         sparse_data = []
         test_data = []
         cl_cl = []
+
+        print("Numero di topic da processare:", len(np.unique(df_train.topic)))
             
         index_test = getSimilar(df_train, df_test, topic, test_size=0.3)[0]
         
@@ -265,8 +267,8 @@ def task_C(df_train, df_test, sc, sqlContext, pipe, features_col):
         test_topic = tr3_test.filter(tr3_test['topic'] != topic)    
 
         
-        # train_topic = MLUtils.convertVectorColumnsFromML(train_topic, features_col)
-        # test_topic = MLUtils.convertVectorColumnsFromML(test_topic, features_col)
+        train_topic = MLUtils.convertVectorColumnsFromML(train_topic, features_col)
+        test_topic = MLUtils.convertVectorColumnsFromML(test_topic, features_col)
 
         for index, row in train_topic.toPandas().iterrows():
             sparse_data.append(LabeledPoint(float(row['class']), row[features_col]))
