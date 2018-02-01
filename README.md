@@ -10,10 +10,13 @@ Given a message and a topic, classify the message on
 
 ## Struttura del progetto
 Il progetto ha la seguente struttura:
-  * **main.py** : main del progetto  
-  * **utilities.py** : libreria che comprende una serie di funzioni utili utilizzate nel main
-  * **tweets_subtask_BD** : all'interno della cartella ci sono i file di test, train, dev e devtest
-  
+  * **are_project_B.py** : file di esecuzione del task B  
+  * **are_project_C.py** : file di esecuzione del task C
+  * **utilities.py** : libreria che comprende una serie di funzioni utili utilizzate dai task
+  * **train_BD.tsv** : dataset di train utilizzato nel task B
+  * **train_CE.tsv** : dataset di train utilizzato nel task C
+  * **test_BD.tsv** : dataset di test utilizzato nel task B
+  * **test_CE.tsv** : dataset di test utilizzato nel task C
   
 ## Struttura dei file
 Ogni file presente nella cartella è così composto:  
@@ -62,5 +65,5 @@ Ogni file presente nella cartella è così composto:
  * Preprocessing dei dati
  * Aggiunta di feature semantiche scaricate tramite Watson IBM (categorie, concetti) e inclusione di queste nei tweet
  * Utilizzo di TF-IDF
- * Creazione modello di Logistic Regression
+ * Creazione modello di Logistic Regression (Task B) e di Decision Tree (Task C)
  * Predizione
