@@ -68,6 +68,11 @@ print("Caricamento Feature...")
 
 stop_words = requests.get('http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words').text.split()
 
+tokenizer1 = Tokenizer().setInputCol('tweet_text').setOutputCol('words')
+sw_filter1 = StopWordsRemover().setStopWords(stop_words).setCaseSensitive(False).setInputCol("words").setOutputCol("filtered")
+cve1 = CountVectorizer(minTF=1., minDF=5., vocabSize=2**17).setInputCol("filtered").setOutputCol("tf")
+idf1 = IDF().setInputCol('tf_cat').setOutputCol('tfidf')
+
 tokenizer2 = Tokenizer().setInputCol('tweet_cat').setOutputCol('words_cat')
 sw_filter2 = StopWordsRemover().setStopWords(stop_words).setCaseSensitive(False).setInputCol("words_cat").setOutputCol("filtered_cat")
 cve2 = CountVectorizer(minTF=1., minDF=5., vocabSize=2**17).setInputCol("filtered_cat").setOutputCol("tf_cat")
@@ -80,13 +85,23 @@ idf3 = IDF().setInputCol('tf_con').setOutputCol('tfidf_con')
 
 vecAss = VectorAssembler(inputCols=['tfidf_cat', 'tfidf_con'], outputCol='features')
 
+pipe_feat1 = Pipeline(stages=[tokenizer1, sw_filter1, cve1, idf1])
 pipe_feat2 = Pipeline(stages=[tokenizer2, sw_filter2, cve2, idf2])
 pipe_feat3 = Pipeline(stages=[tokenizer3, sw_filter3, cve3, idf3])
 final_pipe = Pipeline(stages=[pipe_feat2, pipe_feat3, vecAss])
 
 
 # 3. Esecuzione Task B
-# a. Categorie
+# a. Baseline
+print("Esecuzione Baseline Task B...")
+accuracy_cat, f1_score_cat, avgRec_cat = utilities.task_B(df_train, df_test, sqlContext, pipe_feat1, 'tfidf')
+
+print 'Baseline: '
+print '  Accuracy: %f' % (accuracy_cat)
+print '  F1 Score: %f' % (f1_score_cat)
+print '  Avg Rec: %f' % (avgRec_cat)
+
+# b. Categorie
 print("Esecuzione Task B con categorie...")
 accuracy_cat, f1_score_cat, avgRec_cat = utilities.task_B(df_train, df_test, sqlContext, pipe_feat2, 'tfidf_cat')
 
@@ -95,7 +110,7 @@ print '  Accuracy: %f' % (accuracy_cat)
 print '  F1 Score: %f' % (f1_score_cat)
 print '  Avg Rec: %f' % (avgRec_cat)
 
-# b. Concetti
+# c. Concetti
 print("Esecuzione Task B con concetti...")
 accuracy_con, f1_score_con, avgRec_con = utilities.task_B(df_train, df_test, sqlContext, pipe_feat3, 'tfidf_con')
 
@@ -104,7 +119,7 @@ print '  Accuracy: %f' % (accuracy_con)
 print '  F1 Score: %f' % (f1_score_con)
 print '  Avg Rec: %f' % (avgRec_con)
 
-# c. Categorie e  Concetti
+# d. Categorie e  Concetti
 print("Esecuzione Task B con categorie e concetti...")
 accuracy_con, f1_score_con, avgRec_con = utilities.task_B(df_train, df_test, sqlContext, final_pipe, 'features')
 
