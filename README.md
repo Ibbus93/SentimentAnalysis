@@ -1,6 +1,11 @@
-# Progetto di ARE2 - Sentiment Analysis
+# <a href="https://github.com/Ibbus93/">Federico Ibba</a>, <a href="https://github.com/ferruvich">Daniele Stefano Ferru</a>, <a href="http://people.unica.it/diegoreforgiato/">Diego Reforgiato
+ 
+# Supervised Topic-Based Message Polarity Classification using Cognitive Computing
 
-## Comanda del progetto
+This project is part of <a href="http://alt.qcri.org/semeval2017/task4/">Semeval 2017 Task 4</a>  
+
+
+## Project tasks
 
 <h3>Subtasks B-C: Topic-Based Message Polarity Classification:  </h3>
 Given a message and a topic, classify the message on   
@@ -8,18 +13,18 @@ Given a message and a topic, classify the message on
   * **B) two-point scale:** positive or negative sentiment towards that topic
   * **C) five-point scale:** sentiment conveyed by that tweet towards the topic on a five-point scale.
 
-## Struttura del progetto
-Il progetto ha la seguente struttura:
-  * **are_project_B.py** : file di esecuzione del task B  
-  * **are_project_C.py** : file di esecuzione del task C
-  * **utilities.py** : libreria che comprende una serie di funzioni utili utilizzate dai task
-  * **train_BD.tsv** : dataset di train utilizzato nel task B
-  * **train_CE.tsv** : dataset di train utilizzato nel task C
-  * **test_BD.tsv** : dataset di test utilizzato nel task B
-  * **test_CE.tsv** : dataset di test utilizzato nel task C
+## Project structure
+The project is built as follow:
+  * **are_project_B.py** : execution file task B
+  * **are_project_C.py** : execution file task C
+  * **utilities.py** : personal library with various useful functions used by tasks
+  * **train_BD.tsv** : train dataset task B
+  * **train_CE.tsv** : train dataset task C
+  * **test_BD.tsv** : test dataset task B
+  * **test_CE.tsv** : test dataset task C
   
-## Struttura dei file
-Ogni file presente nella cartella è così composto:  
+## Dataset structure
+The following table explains how the dataset is composed:  
 
   <table>
     <tr>
@@ -61,9 +66,13 @@ Ogni file presente nella cartella è così composto:
 
   </table>
  
- ## Approccio alla risoluzione dei task
- * Preprocessing dei dati
- * Aggiunta di feature semantiche scaricate tramite Watson IBM (categorie, concetti) e inclusione di queste nei tweet
- * Utilizzo di TF-IDF
- * Creazione modello di Logistic Regression (Task B) e di Decision Tree (Task C)
- * Predizione
+## Tasks resolution approach
+<ol>
+ <li>Data Preprocessing</li>     
+ <li>Every record has been associated with categories and concepts taken by IBM Watson</li>
+ <li>Various classifiers has been trained to obtain the best obtainable scores requested by the challenge.</li>
+ <li>Best results has been taken</li> 
+</ol>
+
+## Results of the studied case
+The results of this research has been written into a paper proposed to <a href="http://www.maurodragoni.com/research/opinionmining/events/">Workshop on Sentic Computing, Sentiment Analysis, Opinion Mining, and Emotion Detection</a>.
