@@ -1,9 +1,7 @@
-# <a href="https://github.com/Ibbus93/">Federico Ibba</a>, <a href="https://github.com/ferruvich">Daniele Stefano Ferru</a>, <a href="http://people.unica.it/diegoreforgiato/">Diego Reforgiato
- 
 # Supervised Topic-Based Message Polarity Classification using Cognitive Computing
+## <a href="https://github.com/Ibbus93/">Federico Ibba</a>, <a href="https://github.com/ferruvich">Daniele Stefano Ferru</a>, <a href="http://people.unica.it/diegoreforgiato/">Diego Reforgiato
 
 This project is part of <a href="http://alt.qcri.org/semeval2017/task4/">Semeval 2017 Task 4</a>  
-
 
 ## Project tasks
 
