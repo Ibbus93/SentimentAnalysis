@@ -3,6 +3,9 @@
 
 This project is part of <a href="http://alt.qcri.org/semeval2017/task4/">Semeval 2017 Task 4</a>  
 
+## Paper published
+A <a href="http://ceur-ws.org/Vol-2111/paper2.pdf" target="_blank"> paper</a> has been published about this work throught the proceedings of 4th Workshop on Sentic Computing, Sentiment Analysis, Opinion Mining, and Emotion Detection (EMSASW 2018)
+
 ## Project tasks
 
 <h3>Subtasks B-C: Topic-Based Message Polarity Classification:  </h3>
